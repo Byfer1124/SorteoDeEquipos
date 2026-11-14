@@ -7,11 +7,13 @@ import modelo.Equipo;
 import java.util.Scanner;
 
 public class Main{
+    /*Método principal que ejecuta la interfaz por consola y gestiona el menú interactivo del torneo */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ControladorTorneo controlador = new ControladorTorneo();
         int opcion = 0;
 
+        /*Bucle do-while para mantener el menú activo hasta que el usuario decida salir */
         do {
             System.out.println("\n===== SORTEO DE EQUIPOS - LIGA PROFESIONAL =====");
             System.out.println("1. Ver equipos inscritos (16 equipos)");
@@ -21,10 +23,12 @@ public class Main{
             System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
 
+            /*Valida que la entrada ingresada por consola sea un número entero */
             if (scanner.hasNextInt()) {
                 opcion = scanner.nextInt();
                 scanner.nextLine(); // Limpiar buffer
 
+                /*Estructura de control para dirigir la acción según la opción seleccionada */
                 switch (opcion) {
                     case 1:
                         System.out.println("\n--- Equipos Participantes ---");
@@ -44,7 +48,7 @@ public class Main{
                         System.out.println("Estado actual cargado. Verifique los equipos o partidos.");
                         break;
                     case 5:
-                        System.out.println("¡Saliendo del sistema de sorteo. Hasta luego!");
+                        System.out.println("¡Saliendo del sistema de sorteo!");
                         break;
                     default:
                         System.out.println("Opción inválida. Intente de nuevo.");
