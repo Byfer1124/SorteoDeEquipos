@@ -84,7 +84,4 @@ SorteoDeEquipos/
 
 📐 Diagrama UML
 
-El proyecto incluye el archivo new_diagram.uxf, que contiene el diagrama UML de clases elaborado con UMLet.
-
-Este diagrama representa la estructura del sistema, incluyendo la herencia y las relaciones de asociación, agregación y composición entre las clases.
-
+El proyecto incluye el archivo `diagrama.uxf` elaborado con UMLet, el cual representa la arquitectura MVC, la herencia de las excepciones y las relaciones entre las clases del sistema.
