@@ -77,8 +77,3 @@ El proyecto incluye el archivo new_diagram.uxf, que contiene el diagrama UML de 
 
 Este diagrama representa la estructura del sistema, incluyendo la herencia y las relaciones de asociación, agregación y composición entre las clases.
 
-🛠️ Tecnologías y herramientas
-Lenguaje: Java.
-IDE: Eclipse.
-Control de versiones: Git y GitHub.
-Diagramación UML: UMLet.
