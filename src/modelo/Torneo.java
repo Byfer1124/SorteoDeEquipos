@@ -42,7 +42,7 @@ public class Torneo implements Serializable {
             return;
         }
         if (listaEquipos.size() < 2) {
-            throw new SorteoInvalidoException("Error crítico: Quedó un equipo sin pareja en la etapa " + etapa);
+            throw new SorteoInvalidoException("Error!: Quedó un equipo sin pareja en la etapa " + etapa);
         }
 
         Equipo local = listaEquipos.remove(0);
