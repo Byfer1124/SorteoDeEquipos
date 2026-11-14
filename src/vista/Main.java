@@ -13,7 +13,7 @@ public class Main{
         int opcion = 0;
 
         do {
-            System.out.println("\n===== 🏆 SORTEO DE EQUIPOS - LIGA PROFESIONAL =====");
+            System.out.println("\n===== SORTEO DE EQUIPOS - LIGA PROFESIONAL =====");
             System.out.println("1. Ver equipos inscritos (16 equipos)");
             System.out.println("2. Realizar sorteo (Octavos de Final)");
             System.out.println("3. Guardar estado del torneo (Serialización)");
@@ -47,10 +47,10 @@ public class Main{
                         System.out.println("¡Saliendo del sistema de sorteo. Hasta luego!");
                         break;
                     default:
-                        System.out.println("❌ Opción inválida. Intente de nuevo.");
+                        System.out.println("Opción inválida. Intente de nuevo.");
                 }
             } else {
-                System.out.println("❌ Por favor, ingrese un número válido.");
+                System.out.println("Por favor, ingrese un número válido.");
                 scanner.next(); // Limpiar entrada incorrecta
             }
         } while (opcion != 5);
