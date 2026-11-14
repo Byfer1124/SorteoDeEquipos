@@ -32,7 +32,7 @@ public class ControladorTorneo {
     // Simula el sorteo completo hasta la final eligiendo ganadores aleatorios de manera automática para avanzar de fase
     public void simularTorneoCompleto() {
         try {
-            System.out.println("\n===== 🏆 INICIO DEL TORNEO HASTA LA FINAL =====");
+            System.out.println("\n===== INICIO DEL TORNEO HASTA LA FINAL =====");
             
             // 1. OCTAVOS DE FINAL (16 equipos)
             System.out.println("\n--- OCTAVOS DE FINAL ---");
@@ -58,10 +58,10 @@ public class ControladorTorneo {
             imprimirYMostrarPartidos(finalTorneo);
             
             Equipo campeon = simularGanadores(finalTorneo).get(0);
-            System.out.println("\n🎉 ¡EL CAMPEÓN DEL TORNEO ES: " + campeon.getNombre() + "! 🏆");
+            System.out.println("\n ¡EL CAMPEÓN DEL TORNEO ES: " + campeon.getNombre() + "!");
 
         } catch (Exception e) {
-            System.out.println("❌ Error durante el torneo: " + e.getMessage());
+            System.out.println("Error durante el torneo: " + e.getMessage());
         }
     }
 
@@ -87,21 +87,21 @@ public class ControladorTorneo {
     public void guardarProgreso() {
         try {
             Torneo.guardarTorneo(torneo, ARCHIVO_DATOS);
-            System.out.println("💾 ¡Torneo guardado exitosamente!");
+            System.out.println("¡Torneo guardado exitosamente!");
         } catch (IOException e) {
-            System.out.println("❌ Error al guardar: " + e.getMessage());
+            System.out.println("Error al guardar: " + e.getMessage());
         }
     }
 
     public void cargarProgreso() {
         try {
             torneo = Torneo.cargarTorneo(ARCHIVO_DATOS);
-            System.out.println("📂 ¡Torneo cargado exitosamente desde " + ARCHIVO_DATOS + "!");
-            System.out.println("📋 Equipos recuperados en el torneo: " + torneo.getEquipos().size() + " equipos.");
+            System.out.println("¡Torneo cargado exitosamente desde " + ARCHIVO_DATOS + "!");
+            System.out.println("Equipos recuperados en el torneo: " + torneo.getEquipos().size() + " equipos.");
             
             List<Partido> historial = torneo.getHistorialPartidos();
             if (historial != null && !historial.isEmpty()) {
-                System.out.println("⚽ Historial de partidos jugados recuperados:");
+                System.out.println("Historial de partidos jugados recuperados:");
                 String etapaActual = "";
                 for (Partido p : historial) {
                     if (!p.getEtapa().equals(etapaActual)) {
@@ -114,7 +114,7 @@ public class ControladorTorneo {
                 System.out.println("⚠️ El torneo cargado aún no tiene partidos jugados en el historial.");
             }
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("❌ Error al cargar el archivo guardado: " + e.getMessage());
+            System.out.println("Error al cargar el archivo guardado: " + e.getMessage());
         }
     }
 
