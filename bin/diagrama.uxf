@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1.0">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>11</x>
+      <y>22</y>
+      <w>649</w>
+      <h>308</h>
+    </coordinates>
+    <panel_attributes>modelo::Torneo
+--
+-serialVersionUID = 1L: long
+-equipos: List&lt;Equipo&gt;
+-historialPartidos: List&lt;Partido&gt;
+--
++Torneo(): ctor
++agregarEquipo(Equipo e): void
++getEquipos(): List&lt;Equipo&gt;
++getHistorialPartidos(): List&lt;Partido&gt;
++agregarPartidosRonda(List&lt;Partido&gt; partidos): void
++validarNumeroEquipos(int n): void
+-emparejarRecursivo(List&lt;Equipo&gt; listaEquipos, String etapa, List&lt;Partido&gt; resultados): void
++realizarSorteoEtapa(String etapa, List&lt;Equipo&gt; equiposParticipantes): List&lt;Partido&gt;
++guardarTorneo(Torneo torneo, String rutaArchivo): void
++cargarTorneo(String rutaArchivo): Torneo
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>671</x>
+      <y>22</y>
+      <w>396</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>controlador::ControladorTorneo
+--
+-torneo: Torneo
+-ARCHIVO_DATOS = "torneo.ser": String
+-partidosRondaActual: List&lt;Partido&gt;
+--
++ControladorTorneo(): ctor
+-inicializarEquiposPorDefecto(): void
++simularTorneoCompleto(): void
+-imprimirYMostrarPartidos(List&lt;Partido&gt; partidos): void
+-simularGanadores(List&lt;Partido&gt; partidos): List&lt;Equipo&gt;
++guardarProgreso(): void
++cargarProgreso(): void
++getEquipos(): List&lt;Equipo&gt;
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>11</x>
+      <y>363</y>
+      <w>495</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>modelo::Partido
+--
+-serialVersionUID = 1L: long
+-equipoLocal: Equipo
+-equipoVisita: Equipo
+-etapa: String
+--
++Partido(Equipo equipoLocal, Equipo equipoVisita, String etapa): ctor
++getEquipoLocal(): Equipo
++getEquipoVisita(): Equipo
++getEtapa(): String
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>550</x>
+      <y>363</y>
+      <w>253</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>modelo::Equipo
+--
+-serialVersionUID = 1L: long
+-nombre: String
+--
++Equipo(String nombre): ctor
++getNombre(): String
++setNombre(String nombre): void
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>495</x>
+      <y>605</y>
+      <w>407</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>modelo::NumeroEquiposInvalidoException
+--
+--
++NumeroEquiposInvalidoException(String mensaje): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>616</y>
+      <w>341</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>modelo::SorteoInvalidoException
+--
+--
++SorteoInvalidoException(String mensaje): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>847</x>
+      <y>341</y>
+      <w>198</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>vista::Main
+--
+--
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>649</x>
+      <y>297</y>
+      <w>110</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>495</x>
+      <y>429</y>
+      <w>77</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>297</x>
+      <y>319</y>
+      <w>33</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;30.0;10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+</diagram>

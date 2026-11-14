@@ -1,28 +1,20 @@
 package modelo;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-//Contiene la lista de equipos, la lógica del sorteo recursivo y los métodos de Serialización/Deserialización.
-
-public class Torneo implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+public class Torneo implements Serializable {
+    private static final long serialVersionUID = 1L;
     private List<Equipo> equipos;
-    private List<Partido> partidosRondaActual;
-    
+    private List<Partido> historialPartidos; // Historial de todas las fases
+
     public Torneo() {
         this.equipos = new ArrayList<>();
-        this.partidosRondaActual = new ArrayList<>();
+        this.historialPartidos = new ArrayList<>();
     }
-    
+
     public void agregarEquipo(Equipo e) {
         this.equipos.add(e);
     }
@@ -31,60 +23,56 @@ public class Torneo implements Serializable{
         return equipos;
     }
 
-    public List<Partido> getPartidosRondaActual() {
-        return partidosRondaActual;
+    public List<Partido> getHistorialPartidos() {
+        return historialPartidos;
     }
-    
-    // Validación de potencia de 2 (16, 8, 4, 2)
+
+    public void agregarPartidosRonda(List<Partido> partidos) {
+        this.historialPartidos.addAll(partidos);
+    }
+
     public void validarNumeroEquipos(int n) throws NumeroEquiposInvalidoException {
         if (n != 2 && n != 4 && n != 8 && n != 16) {
-            throw new NumeroEquiposInvalidoException("El número de equipos (" + n + ") no es válido para eliminación directa (debe ser potencia de 2: 16, 8, 4, 2).");
+            throw new NumeroEquiposInvalidoException("El número de equipos (" + n + ") no es válido (debe ser potencia de 2: 16, 8, 4, 2).");
         }
     }
-    
-    // Algoritmo de sorteo recursivo
-    public void sortearEtapaRecursivo(List<Equipo> listaEquipos, String etapa, List<Partido> resultados) throws SorteoInvalidoException, NumeroEquiposInvalidoException {
-        validarNumeroEquipos(listaEquipos.size());
 
-        if (listaEquipos.size() % 2 != 0) {
-            throw new SorteoInvalidoException("Error crítico: La cantidad de equipos es impar, no se pueden emparejar.");
-        }
-
-        // Caso base de la recursividad: cuando quedan 2 equipos para la final o último emparejamiento
-        if (listaEquipos.size() == 2) {
-            resultados.add(new Partido(listaEquipos.get(0), listaEquipos.get(1), etapa));
+    private void emparejarRecursivo(List<Equipo> listaEquipos, String etapa, List<Partido> resultados) throws SorteoInvalidoException {
+        if (listaEquipos.isEmpty()) {
             return;
         }
+        if (listaEquipos.size() < 2) {
+            throw new SorteoInvalidoException("Error crítico: Quedó un equipo sin pareja en la etapa " + etapa);
+        }
 
-        // Lógica recursiva: barajar aleatoriamente para garantizar aleatoriedad
-        List<Equipo> copia = new ArrayList<>(listaEquipos);
-        Collections.shuffle(copia);
-
-        Equipo local = copia.get(0);
-        Equipo visita = copia.get(1);
+        Equipo local = listaEquipos.remove(0);
+        Equipo visita = listaEquipos.remove(0);
 
         resultados.add(new Partido(local, visita, etapa));
-
-        // Remover los equipos ya emparejados y llamar recursivamente con el resto
-        copia.remove(0);
-        copia.remove(0);
-
-        sortearEtapaRecursivo(copia, etapa, resultados);
+        emparejarRecursivo(listaEquipos, etapa, resultados);
     }
 
-    public void realizarSorteo(String etapa) throws SorteoInvalidoException, NumeroEquiposInvalidoException {
-        partidosRondaActual.clear();
-        sortearEtapaRecursivo(new ArrayList<>(equipos), etapa, partidosRondaActual);
+    public List<Partido> realizarSorteoEtapa(String etapa, List<Equipo> equiposParticipantes) throws SorteoInvalidoException, NumeroEquiposInvalidoException {
+        validarNumeroEquipos(equiposParticipantes.size());
+
+        List<Partido> partidosEtapa = new ArrayList<>();
+        List<Equipo> copia = new ArrayList<>(equiposParticipantes);
+        Collections.shuffle(copia);
+
+        emparejarRecursivo(copia, etapa, partidosEtapa);
+        
+        // Guardar automáticamente en el historial general del torneo
+        agregarPartidosRonda(partidosEtapa);
+        
+        return partidosEtapa;
     }
 
-    // Serialización (Guardar estado)
     public static void guardarTorneo(Torneo torneo, String rutaArchivo) throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(rutaArchivo))) {
             oos.writeObject(torneo);
         }
     }
 
-    // Deserialización (Cargar estado)
     public static Torneo cargarTorneo(String rutaArchivo) throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
             return (Torneo) ois.readObject();
