@@ -10,12 +10,14 @@ public class ControladorTorneo {
     private final String ARCHIVO_DATOS = "torneo.ser";
     private List<Partido> partidosRondaActual;
 
+    /*Constructor para inicializar el torneo, los partidos de la ronda y cargar los equipos por defecto */
     public ControladorTorneo() {
         this.torneo = new Torneo();
         this.partidosRondaActual = new ArrayList<>();
         inicializarEquiposPorDefecto();
     }
 
+    /*Inicializa y agrega los 16 equipos profesionales por defecto al torneo */
     private void inicializarEquiposPorDefecto() {
         String[] nombresEquipos = {
             "Barcelona SC", "Emelec", "Liga de Quito", "Independiente del Valle",
@@ -29,30 +31,30 @@ public class ControladorTorneo {
         }
     }
 
-    // Simula el sorteo completo hasta la final eligiendo ganadores aleatorios de manera automática para avanzar de fase
+    /*Simula el sorteo completo hasta la final eligiendo ganadores aleatorios de manera automática para avanzar de fase */
     public void simularTorneoCompleto() {
         try {
             System.out.println("\n===== INICIO DEL TORNEO HASTA LA FINAL =====");
             
-            // 1. OCTAVOS DE FINAL (16 equipos)
+            /*1. OCTAVOS DE FINAL (16 equipos) */
             System.out.println("\n--- OCTAVOS DE FINAL ---");
             List<Partido> octavos = torneo.realizarSorteoEtapa("Octavos de Final", new ArrayList<>(torneo.getEquipos()));
             imprimirYMostrarPartidos(octavos);
             List<Equipo> ganadoresOctavos = simularGanadores(octavos);
 
-            // 2. CUARTOS DE FINAL (8 equipos)
+            /*2. CUARTOS DE FINAL (8 equipos) */
             System.out.println("\n--- CUARTOS DE FINAL ---");
             List<Partido> cuartos = torneo.realizarSorteoEtapa("Cuartos de Final", ganadoresOctavos);
             imprimirYMostrarPartidos(cuartos);
             List<Equipo> ganadoresCuartos = simularGanadores(cuartos);
 
-            // 3. SEMIFINALES (4 equipos)
+            /*3. SEMIFINALES (4 equipos) */
             System.out.println("\n--- SEMIFINALES ---");
             List<Partido> semis = torneo.realizarSorteoEtapa("Semifinales", ganadoresCuartos);
             imprimirYMostrarPartidos(semis);
             List<Equipo> ganadoresSemis = simularGanadores(semis);
 
-            // 4. GRAN FINAL (2 equipos)
+            /*4. GRAN FINAL (2 equipos) */
             System.out.println("\n--- GRAN FINAL ---");
             List<Partido> finalTorneo = torneo.realizarSorteoEtapa("Final", ganadoresSemis);
             imprimirYMostrarPartidos(finalTorneo);
@@ -65,6 +67,7 @@ public class ControladorTorneo {
         }
     }
 
+    /*Actualiza la ronda actual e imprime cada partido en consola */
     private void imprimirYMostrarPartidos(List<Partido> partidos) {
         this.partidosRondaActual = partidos;
         for (Partido p : partidos) {
@@ -72,11 +75,11 @@ public class ControladorTorneo {
         }
     }
 
-    // Simula de manera aleatoria quién gana cada partido para avanzar a la siguiente etapa
+    /*Simula de manera aleatoria quién gana cada partido para avanzar a la siguiente etapa */
     private List<Equipo> simularGanadores(List<Partido> partidos) {
         List<Equipo> ganadores = new ArrayList<>();
         for (Partido p : partidos) {
-            // Elige aleatoriamente entre local y visita como ganador
+            /*Elige aleatoriamente entre local y visita como ganador */
             Equipo ganador = Math.random() < 0.5 ? p.getEquipoLocal() : p.getEquipoVisita();
             ganadores.add(ganador);
         }
@@ -84,6 +87,7 @@ public class ControladorTorneo {
         return ganadores;
     }
 
+    /*Guarda el estado actual del torneo mediante serialización */
     public void guardarProgreso() {
         try {
             Torneo.guardarTorneo(torneo, ARCHIVO_DATOS);
@@ -93,6 +97,7 @@ public class ControladorTorneo {
         }
     }
 
+    /*Carga el estado del torneo desde el archivo serializado y muestra el historial de partidos */
     public void cargarProgreso() {
         try {
             torneo = Torneo.cargarTorneo(ARCHIVO_DATOS);
@@ -111,13 +116,14 @@ public class ControladorTorneo {
                     System.out.println("   * " + p.getEquipoLocal() + " vs " + p.getEquipoVisita());
                 }
             } else {
-                System.out.println("⚠️ El torneo cargado aún no tiene partidos jugados en el historial.");
+                System.out.println("El torneo cargado aún no tiene partidos jugados en el historial.");
             }
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error al cargar el archivo guardado: " + e.getMessage());
         }
     }
 
+    /*Retorna la lista de equipos registrados en el torneo */
     public List<Equipo> getEquipos() {
         return torneo.getEquipos();
     }
