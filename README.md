@@ -45,7 +45,7 @@ Aplicación desarrollada en **Java** bajo el patrón arquitectónico **Modelo-Vi
 
 6. Presiona **Next** y selecciona la rama principal (`main`). Selecciona la ubicación donde deseas guardar el proyecto y presiona **Finish** para completar la clonación.
 
-![finish](img/7.png)
+![finish](https://github.com/Byfer1124/SorteoDeEquipos/blob/2ca73c971e5bc84aea0f6281427488caedf4c44d/7.png)
 
 ---
 
