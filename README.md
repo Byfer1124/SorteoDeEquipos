@@ -62,6 +62,8 @@ Aplicación desarrollada en **Java** bajo el patrón arquitectónico **Modelo-Vi
 
 El repositorio está organizado de la siguiente manera:
 
+```text
+
 SorteoDeEquipos/
 ├── src/
 │   ├── controlador/    # ControladorTorneo.java (Lógica de control y flujos)
