@@ -25,7 +25,7 @@ Aplicación desarrollada en **Java** bajo el patrón arquitectónico **Modelo-Vi
 
 1. Abre Eclipse IDE.
 
-![inicioeclips](img/1.png)
+![inicioeclips](https://github.com/Byfer1124/SorteoDeEquipos/blob/40993f4a833cd1b212669a961670a2cfedcfe791/1.png)
 
 2. Selecciona **File → Import**.
 
