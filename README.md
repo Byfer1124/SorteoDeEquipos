@@ -41,7 +41,7 @@ Aplicación desarrollada en **Java** bajo el patrón arquitectónico **Modelo-Vi
 
 5. Selecciona **Clone URI** y presiona **Next**. Pega la siguiente URL: `https://github.com/Byfer1124/byron-poo-audiovisual.git`
 
-![cloneurl](https://github.com/Byfer1124/SorteoDeEquipos/blob/03fbe1d304067edacfd004d8366df9b8325124be/5.png)
+![cloneurl](https://github.com/Byfer1124/SorteoDeEquipos/blob/2ca73c971e5bc84aea0f6281427488caedf4c44d/6.png)
 
 6. Presiona **Next** y selecciona la rama principal (`main`). Selecciona la ubicación donde deseas guardar el proyecto y presiona **Finish** para completar la clonación.
 
