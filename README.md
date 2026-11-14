@@ -1,4 +1,13 @@
 # Sistema de Gestión y Sorteo de Torneo de Fútbol (MVC)
+
+---
+
+**Link del proyecto en GitHub**
+
+URL: `https://github.com/Byfer1124/SorteoDeEquipos.git`
+
+---
+
 📌 **Descripción del proyecto**
 
 Aplicación desarrollada en **Java** bajo el patrón arquitectónico **Modelo-Vista-Controlador (MVC)**, diseñada para gestionar un torneo de eliminación directa de 16 equipos (potencias de 2: 16, 8, 4, 2). El sistema automatiza los emparejamientos mediante algoritmos recursivos, valida restricciones de negocio con excepciones personalizadas y garantiza la persistencia transaccional de los datos mediante serialización binaria.
@@ -39,7 +48,7 @@ Aplicación desarrollada en **Java** bajo el patrón arquitectónico **Modelo-Vi
 
 ![projectgit](https://github.com/Byfer1124/SorteoDeEquipos/blob/03fbe1d304067edacfd004d8366df9b8325124be/4.png)
 
-5. Selecciona **Clone URI** y presiona **Next**. Pega la siguiente URL: `https://github.com/Byfer1124/byron-poo-audiovisual.git`
+5. Selecciona **Clone URI** y presiona **Next**. Pega la siguiente URL: `https://github.com/Byfer1124/SorteoDeEquipos.git`
 
 ![cloneurl](https://github.com/Byfer1124/SorteoDeEquipos/blob/2ca73c971e5bc84aea0f6281427488caedf4c44d/6.png)
 
