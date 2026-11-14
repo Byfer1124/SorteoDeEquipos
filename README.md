@@ -62,13 +62,14 @@ Aplicación desarrollada en **Java** bajo el patrón arquitectónico **Modelo-Vi
 
 El repositorio está organizado de la siguiente manera:
 
-```text
-byron-poo-audiovisual/
-├── img/                # Carpeta que contiene las imágenes y diagramas del proyecto
-├── src/                # Código fuente principal de la aplicación en Java
-│   ├── poo/            # Paquete con las clases principales y estructura base
-│   └── uni1a/          # Paquete con las clases específicas y subclases asociadas
-└── README.md           # Archivo de documentación del repositorio
+SorteoDeEquipos/
+├── src/
+│   ├── controlador/    # ControladorTorneo.java (Lógica de control y flujos)
+│   ├── modelo/         # Entidades (Torneo, Equipo, Partido) y Excepciones
+│   └── vista/          # Main.java y gestión de consola
+├── img/                # Carpeta de imágenes y recursos
+├── diagrama.uxf        # Diagrama UML (UMLet)
+└── torneo.ser          # Archivo binario de persistencia (Serialización)
 
 📐 Diagrama UML
 
